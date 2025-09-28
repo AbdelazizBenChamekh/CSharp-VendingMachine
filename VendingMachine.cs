@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-/// This class manages the inventory, transactions, and user balance.
 public class VendingMachine
 {
-    /// A list of all products available in the machine.
     public List<Product> Products { get; private set; }
 
 
@@ -32,7 +30,6 @@ public class VendingMachine
         Products.Add(new Product { Name = "Gum", Price = 0.50m, Quantity = 30 });
     }
 
-    /// Displays all available products, their prices, and current stock.
     public void DisplayProducts()
     {
         Console.WriteLine("\n--- Available Products ---");
@@ -46,7 +43,6 @@ public class VendingMachine
 
     public bool InsertCoin(decimal amount)
     {
-        // We can define which coins/notes are valid
         decimal[] validDenominations = { 0.10m, 0.25m, 0.50m, 1.00m, 5.00m };
         if (validDenominations.Contains(amount))
         {
@@ -64,7 +60,6 @@ public class VendingMachine
 
     public void PurchaseProduct(int productNumber)
     {
-        // Convert 1-based number to 0-based index
         int productIndex = productNumber - 1;
 
         if (productIndex < 0 || productIndex >= Products.Count)
@@ -87,7 +82,6 @@ public class VendingMachine
             return;
         }
 
-        // Transaction
         UserBalance -= selectedProduct.Price;
         selectedProduct.Quantity--;
         TotalRevenue += selectedProduct.Price;
@@ -99,7 +93,6 @@ public class VendingMachine
         ReturnChange();
     }
 
-    /// Returns any remaining balance to the user.
     public void ReturnChange()
     {
         if (UserBalance > 0)
@@ -114,7 +107,6 @@ public class VendingMachine
     }
 
 
-    /// Admin: Restocks a specific product.
     public void RestockProduct(int productNumber, int amount)
     {
         int productIndex = productNumber - 1;
@@ -129,7 +121,6 @@ public class VendingMachine
         }
     }
 
-    /// Admin: Collects all revenue from the machine.
     public void CollectRevenue()
     {
         Console.WriteLine($"Collected {TotalRevenue:C} from the machine.");

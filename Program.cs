@@ -1,6 +1,5 @@
 ﻿using System;
 
-/// The main entry point for the console application.
 class Program
 {
     
@@ -64,10 +63,9 @@ class Program
 
 static void InsertCoinMenu()
 {
-    // Start a loop that will continue until the user types 'done'
     while (true)
     {
-        Console.Clear(); // Clear the console for a clean interface
+        Console.Clear();
         Console.WriteLine("--- Insert Money ---");
         Console.WriteLine($"Your current balance is: {vendingMachine.UserBalance:C}");
         Console.WriteLine("We accept the following denominations: 0.10, 0.25, 0.50, 1.00, 5.00");
@@ -75,14 +73,12 @@ static void InsertCoinMenu()
 
         string input = Console.ReadLine();
 
-        // Check if the user is finished inserting money
         if (input.Equals("done", StringComparison.OrdinalIgnoreCase))
         {
             Console.WriteLine("Returning to main menu...");
             break;
         }
 
-        // Try to convert the user's input into a number (decimal)
         if (decimal.TryParse(input, out decimal amount))
         {
 
